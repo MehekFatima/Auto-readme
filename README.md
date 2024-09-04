@@ -9,7 +9,11 @@ You can install `auto-readme-creator` globally using npm:
 ```bash
 npm install -g auto-readme-creator
 ```
+if global installation fails you can use:
 
+```bash
+npx auto-readme-creator
+```
 ## Usage
 
 After installing, you can use `auto-readme-creator` to generate a `README.md` file in your project directory. The tool will scan your source files and create a README based on the comments found in those files.
