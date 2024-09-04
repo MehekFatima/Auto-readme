@@ -1,0 +1,29 @@
+{
+  "name": "auto-readme-creator",
+  "version": "1.0.3",
+  "description": "A CLI tool to automatically generate README.md files based on comments in your code.",
+  "main": "index.js",
+  "bin": {
+    "auto-readme-creator": "./index.js"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "@babel/parser": "^7.14.7"
+  },
+  "author": "Mehek Fatima",
+  "license": "MIT",
+  "keywords": [
+    "readme",
+    "auto-readme",
+    "generator",
+    "cli",
+    "documentation",
+    "react",
+    "auto",
+    "project",
+    "npm",
+    "tool",
+    "package",
+    "code-comments"
+  ]
+}
