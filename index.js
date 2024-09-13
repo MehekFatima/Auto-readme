@@ -42,11 +42,47 @@ const extractComments = (code, fileType) => {
 
 // Function to generate markdown from comments
 const generateMarkdown = (comments, fileName) => {
-  let markdown = `# ${fileName}\n\n`;
-  comments.forEach((comment, index) => {
-    markdown += `## Section ${index + 1}\n${comment}\n\n`;
-  });
+  // Extract the base name without extension for section title
+  const baseName = path.basename(fileName, path.extname(fileName));
+
+  let markdown = `## ${baseName}\n\n`;
+  if (comments.length === 0) {
+    markdown += `No comments found in ${fileName}.\n\n`;
+  } else {
+    comments.forEach((comment, index) => {
+      // Add a header for each comment if possible
+      const commentHeader = comment.split('\n')[0]; // Use the first line of the comment as header if available
+      const commentBody = comment.substring(commentHeader.length).trim();
+
+      markdown += `### Comment ${index + 1}: ${commentHeader}\n${commentBody}\n\n`;
+    });
+  }
   return markdown;
+};
+
+// Function to update the README with content from each file
+const updateReadme = (fileName, markdownContent) => {
+  let readmeContent = '';
+
+  // Check if README exists
+  if (fs.existsSync('README.md')) {
+    readmeContent = fs.readFileSync('README.md', 'utf-8');
+  }
+
+  const fileSection = `## ${path.basename(fileName, path.extname(fileName))}\n`;
+
+  // Replace existing content for the file if it already exists
+  if (readmeContent.includes(fileSection)) {
+    const regex = new RegExp(`${fileSection}[\\s\\S]*?(?=## |$)`, 'g');
+    readmeContent = readmeContent.replace(regex, markdownContent);
+  } else {
+    // Append new content
+    readmeContent += markdownContent;
+  }
+
+  // Write the updated content back to README.md
+  fs.writeFileSync('README.md', readmeContent);
+  console.log(`README.md has been updated with changes from ${fileName}.`);
 };
 
 // Function to watch files and generate README
@@ -62,8 +98,7 @@ const watchFiles = () => {
     const fileType = path.extname(filePath).slice(1); // Get the file extension
     const comments = extractComments(code, fileType);
     const markdown = generateMarkdown(comments, path.basename(filePath));
-    fs.writeFileSync('README.md', markdown);
-    console.log('README.md has been updated.');
+    updateReadme(path.basename(filePath), markdown);
   });
 
   console.log('Watching for file changes...');

@@ -54,11 +54,45 @@ To ensure that globally installed npm packages are accessible from the command l
 ```
 This will return a path, such as `C:\Users\YourUsername\AppData\Roaming\npm.`
 
+2. **Add the Directory to PATH**
+
+  - Open the Start Menu and search for "Environment Variables".
+  - Click on "Edit the system environment variables."
+  - In the System Properties window, click on the "Environment Variables" button.
+  - In the Environment Variables window, find the "Path" variable under "System variables" and select it.
+ - Click "Edit."
+ - Click "New" and add the path you obtained from the npm config get prefix command.
+ - Click "OK" to close all dialogs.
+
+ ## On macOS
+1. **Find the npm Global Directory**
+
+ Run the following command in your terminal to find the global npm directory:
+
+ ```bash
+    npm config get prefix
+```
+This will return a path, such as /usr/local.
+
+2. **Add the Directory to PATH**
+- Open your terminal.
+
+-  your shell profile file (`.bash_profile`, `.zshrc`, or `.bashrc` depending on your shell) using a text editor. For example:
+
+```bash
+   nano ~/.bash_profile
+```
+- Add the following line to include the npm global bin directory in your PATH:
+
+```bash
+   export PATH=$PATH:/usr/local/bin
+```
+
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to `auto-readme-creator`, please follow these steps:
 
-1. **Submit Issues**: Report bugs or request features by opening an issue on [GitHub Issues](https://github.com/MehekFatima/auto-readme-creator).
+1. **Submit Issues**: Report bugs or request features by opening an issue on [GitHub Issues](https://github.com/MehekFatima/auto-readme-creator/issues).
 
 2. **Create Pull Requests**: Submit changes by creating a pull request. Please ensure your changes are well-documented and include tests if applicable.
 
