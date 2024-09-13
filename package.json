@@ -7,8 +7,14 @@
     "auto-readme-creator": "./index.js"
   },
   "dependencies": {
-    "chokidar": "^3.5.3",
-    "@babel/parser": "^7.14.7"
+    "@babel/parser": "^7.14.7",
+    "chokidar": "^3.5.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "scripts": {
+    "test": "jest"
   },
   "author": "Mehek Fatima",
   "license": "MIT",
