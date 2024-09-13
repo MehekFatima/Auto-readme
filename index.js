@@ -45,18 +45,26 @@ const generateMarkdown = (comments, fileName) => {
   // Extract the base name without extension for section title
   const baseName = path.basename(fileName, path.extname(fileName));
 
-  let markdown = `## ${baseName}\n\n`;
-  if (comments.length === 0) {
-    markdown += `No comments found in ${fileName}.\n\n`;
-  } else {
-    comments.forEach((comment, index) => {
-      // Add a header for each comment if possible
-      const commentHeader = comment.split('\n')[0]; // Use the first line of the comment as header if available
-      const commentBody = comment.substring(commentHeader.length).trim();
+  let markdown = `# ${baseName}\n\n`;
+  let currentHeading = null;
 
-      markdown += `### Comment ${index + 1}: ${commentHeader}\n${commentBody}\n\n`;
-    });
+  comments.forEach(comment => {
+    if (comment.startsWith('~')) {
+      // Treat comments starting with ~ as paragraphs under the last heading
+      if (currentHeading) {
+        markdown += `${comment.substring(1).trim()}\n\n`;
+      }
+    } else {
+      // Use comments without ~ as headings
+      currentHeading = comment;
+      markdown += `## ${currentHeading}\n\n`;
+    }
+  });
+
+  if (!currentHeading) {
+    markdown += `No comments found in ${fileName}.\n\n`;
   }
+
   return markdown;
 };
 
@@ -69,11 +77,11 @@ const updateReadme = (fileName, markdownContent) => {
     readmeContent = fs.readFileSync('README.md', 'utf-8');
   }
 
-  const fileSection = `## ${path.basename(fileName, path.extname(fileName))}\n`;
+  const fileSection = `# ${path.basename(fileName, path.extname(fileName))}\n`;
 
   // Replace existing content for the file if it already exists
   if (readmeContent.includes(fileSection)) {
-    const regex = new RegExp(`${fileSection}[\\s\\S]*?(?=## |$)`, 'g');
+    const regex = new RegExp(`${fileSection}[\\s\\S]*?(?=# |$)`, 'g');
     readmeContent = readmeContent.replace(regex, markdownContent);
   } else {
     // Append new content
