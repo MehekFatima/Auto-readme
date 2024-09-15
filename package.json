@@ -6,13 +6,6 @@
   "bin": {
     "auto-readme-creator": "./index.js"
   },
-  "dependencies": {
-    "@babel/parser": "^7.14.7",
-    "chokidar": "^3.5.3"
-  },
-  "devDependencies": {
-    "jest": "^29.7.0"
-  },
   "scripts": {
     "test": "jest"
   },
@@ -30,18 +23,14 @@
     "npm",
     "tool",
     "package",
-    "code-comments",
-    "documentation-generator",
-    "automatic-readme",
-    "code-docs",
-    "js-docs",
-    "typescript-docs"
+    "code-comments"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
+  "homepage": "https://github.com/MehekFatima/auto-readme-creator#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MehekFatima/auto-readme-creator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MehekFatima/auto-readme-creator/issues"
   }
 }
