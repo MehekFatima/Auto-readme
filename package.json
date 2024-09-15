@@ -30,6 +30,18 @@
     "npm",
     "tool",
     "package",
-    "code-comments"
-  ]
+    "code-comments",
+    "documentation-generator",
+    "automatic-readme",
+    "code-docs",
+    "js-docs",
+    "typescript-docs"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MehekFatima/auto-readme-creator.git"
+  }
 }
