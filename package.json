@@ -32,5 +32,12 @@
   },
   "bugs": {
     "url": "https://github.com/MehekFatima/auto-readme-creator/issues"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.14.7",
+    "chokidar": "^3.5.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
