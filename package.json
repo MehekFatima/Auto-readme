@@ -1,5 +1,5 @@
 {
-  "name": "auto-readme-creator",
+  "name": "@MehekFatima/auto-readme-creator",
   "version": "1.0.7",
   "description": "A CLI tool to automatically generate README.md files based on comments in your code.",
   "main": "index.js",
