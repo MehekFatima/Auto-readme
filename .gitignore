@@ -47,6 +47,3 @@ public/
 
 # VSCode
 .vscode/
-
-# npm configuration
-.npmrc
